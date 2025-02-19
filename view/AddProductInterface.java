@@ -6,7 +6,7 @@ import model.Product;
 import java.math.BigDecimal;
 import java.util.Scanner;
 
-public class UserInterface {
+public class AddProductInterface {
 
     public static void addProduct() {
         Scanner sc = new Scanner(System.in);
@@ -24,7 +24,7 @@ public class UserInterface {
         sc.nextLine();
 
         Product p = new Product(name, price, quantity, categoryId);
-        ProductController.addProductController(p);
+        ProductController.addProduct(p);
         sc.close();
 
     }

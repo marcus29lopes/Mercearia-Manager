@@ -1,15 +1,15 @@
-import DAO.CategoryDao;
-import DAO.DatabaseConnection;
-import view.UserInterface;
+import view.AddProductInterface;
+import view.DeleteProductInterface;
+import view.RenameProductInterface;
 
 import java.sql.SQLException;
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
 
-        UserInterface.addProduct();
-
+        // AddProductInterface.addProduct();
+        // RenameProductInterface.changeProductName();
+        //DeleteProductInterface.deleteProduct();
         //FAZER LISTAR PRODUTOS
     }
 }

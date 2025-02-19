@@ -11,12 +11,12 @@ public class ProductDao {
         product.setId(id);
     }
 
-    public void attDao(Product product){
+    public static void attNameDao(String name, int id){
         String sql = "UPDATE produto SET nome = ? WHERE id = ?";
-        dao.att(sql, product.getName(), product.getId());
+        dao.att(sql, name, id);
     }
 
-    public void deleteDao(int id){
+    public static void deleteDao(int id){
         String sql = "DELETE FROM produto WHERE id = ?";
         dao.delete(sql, id);
     }
