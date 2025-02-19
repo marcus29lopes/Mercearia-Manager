@@ -4,12 +4,12 @@ import DAO.ProductDao;
 import model.Product;
 
 public class ProductController {
-    public static void addProductController(Product product){
+    public static void addProductController(Product product) {
 
-        try{
+        try {
             ProductDao.insertProduct(product);
-            System.out.println("Produto adicionado com sucesso");
-        } catch (Exception e){
+            System.out.println(product.getName() + " adicionado(a) com ID: " + product.getId());
+        } catch (Exception e) {
             System.out.println("Erro ao cadastrar produto " + e.getMessage());
         }
 
