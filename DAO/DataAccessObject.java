@@ -27,6 +27,23 @@ public class DataAccessObject<T> {
         }
     }
 
+    public int att(String sql, Object... attributes) {
+        return executeUpdate(sql, attributes);
+    }
+
+    public int delete(String sql, Object... attributes) {
+        return executeUpdate(sql, attributes);
+    }
+
+    private int executeUpdate(String sql, Object... attributes) {
+        try (PreparedStatement stmt = connect.prepareStatement(sql)){
+            addAttributes(stmt, attributes);
+            return stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     //vai definir o tipo de cada elemento e usa o metodo apropriado do stmt para
     // definir o valor correspondente no paramentro sql
