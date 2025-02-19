@@ -16,15 +16,12 @@ public class DatabaseConnection {
             final String password = prop.getProperty("db.password");
 
             try {
-                Connection c = DriverManager
+                return DriverManager
                         .getConnection(stringConnection, username, password);
-                System.out.println("Conectado com sucesso!");
-                return c;
 
             } catch (SQLException e) {
                 System.out.println("Error ao tentar estabelecer conexao! " + e.getMessage());
                 return null;
-
             }
         } catch (IOException f) {
             System.out.println("Erro ao carregar o arquivo! " + f.getMessage());
