@@ -1,14 +1,20 @@
 package DAO;
 
+import model.Product;
+
 import java.math.BigDecimal;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Function;
 
-public class DataAccessObject<T> {
+public class DAO<T> {
     private Connection connect;
 
-    public DataAccessObject(Connection connect) {
+    public DAO(Connection connect) {
         this.connect = connect;
     }
+
     //inserir dados e vai gerar a chave automatica
     public int add(String sql, Object... attributes) {
         try (PreparedStatement stmt = connect.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
@@ -26,6 +32,25 @@ public class DataAccessObject<T> {
         }
     }
 
+    public List<T> listar() {
+        List<T> lista = new ArrayList<>();
+        String sql = "SELECT * FROM pessoa";  // Busca todas as pessoas no banco
+
+        try (PreparedStatement statement = connect.prepareStatement(sql);
+             ResultSet resultado = statement.executeQuery()) {
+
+            while (resultado.next()) {
+                int id = resultado.getInt("id");
+                String nome = resultado.getString("nome");
+                lista.add((T) new Product(id, nome));  // Adiciona no ArrayList
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao listar pessoas", e);
+        }
+
+        return lista;
+    }
+
     public int att(String sql, Object... attributes) {
         return executeUpdate(sql, attributes);
     }
@@ -35,7 +60,7 @@ public class DataAccessObject<T> {
     }
 
     private int executeUpdate(String sql, Object... attributes) {
-        try (PreparedStatement stmt = connect.prepareStatement(sql)){
+        try (PreparedStatement stmt = connect.prepareStatement(sql)) {
             addAttributes(stmt, attributes);
             return stmt.executeUpdate();
         } catch (SQLException e) {

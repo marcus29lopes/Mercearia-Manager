@@ -16,6 +16,12 @@ public class Product {
         this.categoryId = categoryId;
     }
 
+    public Product(int id, String nome) {
+        this.id = id;
+        this.name = nome;
+    }
+
+
     public int getId() {
         return id;
     }
@@ -54,6 +60,11 @@ public class Product {
 
     public void setCategoryId(int categoryId) {
         this.categoryId = categoryId;
+    }
+
+    @Override
+    public String toString() {
+        return id + " - " + name;
     }
 }
 
