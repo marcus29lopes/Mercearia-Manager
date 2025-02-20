@@ -9,7 +9,6 @@ public class DataAccessObject<T> {
     public DataAccessObject(Connection connect) {
         this.connect = connect;
     }
-
     //inserir dados e vai gerar a chave automatica
     public int add(String sql, Object... attributes) {
         try (PreparedStatement stmt = connect.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
